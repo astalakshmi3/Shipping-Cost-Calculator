@@ -10,17 +10,13 @@ import se.lexicon.service.ShippingCostCalculator;
 
 @Component
 public class StandardDomesticShipping implements ShippingCostCalculator {
+
+
     @Value("${pricing.domestic.standard.base}")
     private double base;
 
     @Value ("${pricing.domestic.standard.perKg}")
     private double perKg;
-
-    @PostConstruct
-    void init()
-    {
-        System.out.println("Bean created : StandardDomesticCalculator");
-    }
 
     @Override
     public boolean supports(ShippingRequest r) {

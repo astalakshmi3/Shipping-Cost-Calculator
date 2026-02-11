@@ -11,16 +11,12 @@ import se.lexicon.service.ShippingCostCalculator;
 @Component
 public class ExpressInternationalShipping implements ShippingCostCalculator {
 
-    @Value("${pricing.international.express.base}")
+   @Value("${pricing.international.express.base}")
     private double base;
 
     @Value("${pricing.international.express.perKg}")
     private double perKg;
 
-    @PostConstruct
-    void init() {
-        System.out.println("Bean created: ExpressInternationalShipping");
-    }
 
     @Override
     public boolean supports(ShippingRequest r) {
@@ -29,6 +25,6 @@ public class ExpressInternationalShipping implements ShippingCostCalculator {
 
     @Override
     public double calculate(ShippingRequest r) {
-        return base + perKg* r.weightKg();
+        return base + perKg * r.weightKg();
     }
 }
