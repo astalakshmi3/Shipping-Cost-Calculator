@@ -18,6 +18,12 @@ public class StandardDomesticShipping implements ShippingCostCalculator {
     @Value ("${pricing.domestic.standard.perKg}")
     private double perKg;
 
+    @PostConstruct
+    void init() {
+        System.out.println("Bean created: StandardDomesticShipping");
+    }
+
+
     @Override
     public boolean supports(ShippingRequest r) {
         return r.destination() == Destination.DOMESTIC && r.speed() == Speed.STANDARD;

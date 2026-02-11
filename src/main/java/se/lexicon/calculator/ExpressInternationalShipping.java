@@ -17,6 +17,11 @@ public class ExpressInternationalShipping implements ShippingCostCalculator {
     @Value("${pricing.international.express.perKg}")
     private double perKg;
 
+    @PostConstruct
+    void init() {
+        System.out.println("Bean created: ExpressDomesticShipping");
+    }
+
 
     @Override
     public boolean supports(ShippingRequest r) {
