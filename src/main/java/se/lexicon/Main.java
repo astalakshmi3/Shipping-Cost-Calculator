@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import se.lexicon.calculator.ExpressInternationalShipping;
 import se.lexicon.calculator.StandardDomesticShipping;
 import se.lexicon.model.Destination;
@@ -14,6 +15,19 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ShippingService service = context.getBean (ShippingService.class);
+        ShippingRequest req = new ShippingRequest(Destination.DOMESTIC,Speed.STANDARD,5.0);
+        double cost = service.quote (req);
+        System.out.println("Shipping cost:" + cost);
+        context.close();
+
+
+
+
+
+
+                 /*
         // Manual object creation (composition root)
         List<ShippingCostCalculator> calculators = List.of(
                 new StandardDomesticShipping(),
@@ -36,5 +50,8 @@ public class Main {
 
         ShippingRequest heavyInternationalExpressRequest = new ShippingRequest(Destination.INTERNATIONAL, Speed.EXPRESS, 20.0);
         System.out.println("Shipping cost: " + shippingService.quote(heavyInternationalExpressRequest));
+    }  */
+
     }
+
 }
